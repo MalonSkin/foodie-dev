@@ -1,0 +1,7 @@
+# Project exclude paths
+/foodie-dev-api/target/
+/foodie-dev-mapper/target/
+/foodie-dev-pojo/target/
+/.idea
+
+*.iml
