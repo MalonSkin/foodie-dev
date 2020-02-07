@@ -1,8 +1,9 @@
 package com.zhangzz.pojo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 轮播图
