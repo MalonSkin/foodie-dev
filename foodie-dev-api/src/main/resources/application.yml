@@ -43,5 +43,5 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台打印SQL语句
-#  type-aliases-package: com.zhangzz.pojo  # 所有POJO类所在包路径
-  mapper-locations: classpath*:mapper/**.xml  # mapper映射文件
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.zhangzz.pojo

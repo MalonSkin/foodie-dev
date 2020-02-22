@@ -12,7 +12,7 @@
           property：对应三级分类的list属性名
           ofType：集合的类型，三级分类的vo
         -->
-        <collection property="subCatList" ofType="com.zhangzz.pojo.vo.SubCategoryVO">
+        <collection property="subCatList" javaType="java.util.ArrayList" ofType="com.zhangzz.pojo.vo.SubCategoryVO">
             <id column="subId" property="subId"/>
             <result column="subName" property="subName"/>
             <result column="subType" property="subType"/>
@@ -21,23 +21,23 @@
     </resultMap>
 
     <select id="getSubCatList" resultMap="myCategoryVO" parameterType="int">
-    SELECT
-        f.id as id,
-        f.`name` as `name`,
-        f.type as type,
-        f.father_id as fatherId,
-        c.id as subId,
-        c.`name` as subName,
-        c.type as subType,
-        c.father_id as subFatherId
-    FROM
-        category f
-    LEFT JOIN
-        category c
-    ON
-        f.id = c.father_id
-    WHERE
-        f.father_id = #{rootCatId}
-  </select>
+        SELECT
+            f.id as id,
+            f.`name` as `name`,
+            f.type as type,
+            f.father_id as fatherId,
+            c.id as subId,
+            c.`name` as subName,
+            c.type as subType,
+            c.father_id as subFatherId
+        FROM
+            category f
+                LEFT JOIN
+            category c
+            ON
+                f.id = c.father_id
+        WHERE
+            f.father_id = #{rootCatId}
+    </select>
 
 </mapper>
