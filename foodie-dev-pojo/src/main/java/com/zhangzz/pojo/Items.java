@@ -1,5 +1,6 @@
 package com.zhangzz.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.util.Date;
  * @author zhangzz
  */
 @Data
+@TableName("items")
 public class Items implements Serializable {
     /**
      * 商品主键id

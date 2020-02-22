@@ -3,7 +3,9 @@ package com.zhangzz.controller;
 import com.zhangzz.pojo.Users;
 import com.zhangzz.pojo.bo.UserBO;
 import com.zhangzz.service.UserService;
+import com.zhangzz.utils.CookieUtils;
 import com.zhangzz.utils.IMOOCJSONResult;
+import com.zhangzz.utils.JsonUtils;
 import com.zhangzz.utils.MD5Utils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +13,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
+ * 通行验证
  * @author zhangzz
  * @date 2020/2/7 17:03
  */
@@ -21,9 +27,15 @@ import org.springframework.web.bind.annotation.*;
 public class PassportController {
 
     @Autowired
+    public HttpServletRequest request;
+
+    @Autowired
+    public HttpServletResponse response;
+
+    @Autowired
     private UserService userService;
 
-    @ApiOperation(value = "用户名是否存在",notes = "用户名是否存在",httpMethod = "GET")
+    @ApiOperation(value = "用户名是否存在", notes = "用户名是否存在", httpMethod = "GET")
     @GetMapping("/usernameIsExist")
     public IMOOCJSONResult usernameIsExist(@RequestParam String username) {
         // 判断用户名不能为空
@@ -38,7 +50,7 @@ public class PassportController {
         return IMOOCJSONResult.ok();
     }
 
-    @ApiOperation(value = "用户注册",notes = "用户注册",httpMethod = "POST")
+    @ApiOperation(value = "用户注册", notes = "用户注册", httpMethod = "POST")
     @PostMapping("/register")
     public IMOOCJSONResult register(@RequestBody UserBO userBO) {
         String username = userBO.getUsername();
@@ -64,11 +76,14 @@ public class PassportController {
             return IMOOCJSONResult.errorMsg("两次密码不一致");
         }
         // 实现注册
-        userService.createUser(userBO);
+        Users user = userService.createUser(userBO);
+        setNullProperty(user);
+        // 设置cookie
+        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(user), true);
         return IMOOCJSONResult.ok();
     }
 
-    @ApiOperation(value = "用户登录",notes = "用户登录",httpMethod = "POST")
+    @ApiOperation(value = "用户登录", notes = "用户登录", httpMethod = "POST")
     @PostMapping("/login")
     public IMOOCJSONResult login(@RequestBody UserBO userBO) throws Exception {
         String username = userBO.getUsername();
@@ -83,7 +98,32 @@ public class PassportController {
         if (user == null) {
             return IMOOCJSONResult.errorMsg("用户名或者密码错误");
         }
+        setNullProperty(user);
+        // 设置cookie
+        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(user), true);
         return IMOOCJSONResult.ok(user);
+    }
+
+    private void setNullProperty(Users user) {
+        user.setBirthday(null);
+        user.setCreatedTime(null);
+        user.setEmail(null);
+        user.setMobile(null);
+        user.setPassword(null);
+        user.setRealname(null);
+        user.setUpdatedTime(null);
+    }
+
+    @ApiOperation(value = "用户退出登录", notes = "用户退出登录", httpMethod = "POST")
+    @PostMapping("/logout")
+    public IMOOCJSONResult logout(@RequestParam String userId) {
+        // 清除用户相关的cookie
+        CookieUtils.deleteCookie(request, response, "user");
+
+        // TODO 用户退出登录，需要清空后无车
+        // TODO 分布式会话中需要清除用户数据
+
+        return IMOOCJSONResult.ok();
     }
 
 }

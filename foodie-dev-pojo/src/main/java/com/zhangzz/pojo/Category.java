@@ -1,5 +1,6 @@
 package com.zhangzz.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.io.Serializable;
  * @author zhangzz
  */
 @Data
+@TableName(value = "category")
 public class Category implements Serializable {
     /**
      * 主键 分类id主键

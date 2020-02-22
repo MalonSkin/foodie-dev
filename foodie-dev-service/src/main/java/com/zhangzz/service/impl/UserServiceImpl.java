@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     private static final String USER_FACE = "http://122.152.205.72:88/group1/M00/00/05/CpoxxFw_8_qAIlFXAAAcIhVPdSg994.png";
 
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
     @Override
     public boolean usernameIsExist(String username) {
         QueryWrapper<Users> userWrapper = new QueryWrapper<>();
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         return count > 0;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     @Override
     public Users createUser(UserBO userBO) {
         Users user = new Users();
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
     @Override
     public Users queryUserForLogin(String username, String password) {
         QueryWrapper<Users> userWrapper = new QueryWrapper<>();
