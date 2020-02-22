@@ -61,4 +61,15 @@ public class IndexController {
         return IMOOCJSONResult.ok(categoryService.getSubCatList(rootCatId));
     }
 
+    @ApiOperation(value = "查询每个一级分类下的最新6条商品数据", notes = "查询每个一级分类下的最新6条商品数据", httpMethod = "GET")
+    @GetMapping("/sixNewItems/{rootCatId}")
+    public IMOOCJSONResult sixNewItems(
+            @ApiParam(name = "rootCatId", value = "一级分类ID", required = true)
+            @PathVariable Integer rootCatId) {
+        if (rootCatId == null) {
+            return IMOOCJSONResult.errorMsg("分类不存在");
+        }
+        return IMOOCJSONResult.ok(categoryService.getSixNewItemsLazy(rootCatId));
+    }
+
 }

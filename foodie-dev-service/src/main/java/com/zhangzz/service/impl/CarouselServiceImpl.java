@@ -21,8 +21,8 @@ public class CarouselServiceImpl implements CarouselService {
     @Autowired
     private CarouselMapper carouselMapper;
 
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
     @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
     public List<Carousel> queryAll(Integer isShow) {
         QueryWrapper<Carousel> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(Carousel::getIsShow, isShow).orderByAsc(Carousel::getSort);
