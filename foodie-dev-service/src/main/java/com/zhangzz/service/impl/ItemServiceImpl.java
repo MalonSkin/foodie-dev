@@ -9,6 +9,7 @@ import com.zhangzz.mapper.*;
 import com.zhangzz.pojo.*;
 import com.zhangzz.pojo.vo.CommentLevelCountsVO;
 import com.zhangzz.pojo.vo.ItemCommentVO;
+import com.zhangzz.pojo.vo.SearchItemsVO;
 import com.zhangzz.service.ItemService;
 import com.zhangzz.utils.DesensitizationUtil;
 import com.zhangzz.utils.PagedGridResult;
@@ -108,4 +109,24 @@ public class ItemServiceImpl implements ItemService {
         return new PagedGridResult().fromPage(iPage);
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
+    public PagedGridResult searchItems(String keywords, String sort, Long page, Long pageSize) {
+        Map<String, Object> paramsMap = Maps.newHashMap();
+        paramsMap.put("keywords", keywords);
+        paramsMap.put("sort", sort);
+        Page<ItemCommentVO> queryPage = new Page<>(page, pageSize);
+        IPage<SearchItemsVO> iPage = itemsMapper.searchItems(queryPage, paramsMap);
+        return new PagedGridResult().fromPage(iPage);
+    }
+
+    @Override
+    public PagedGridResult searchItemsByThirdCat(Integer catId, String sort, Long page, Long pageSize) {
+        Map<String, Object> paramsMap = Maps.newHashMap();
+        paramsMap.put("catId", catId);
+        paramsMap.put("sort", sort);
+        Page<ItemCommentVO> queryPage = new Page<>(page, pageSize);
+        IPage<SearchItemsVO> iPage = itemsMapper.searchItemsByThirdCat(queryPage, paramsMap);
+        return new PagedGridResult().fromPage(iPage);
+    }
 }

@@ -53,11 +53,31 @@ public interface ItemService {
 
     /**
      * 根据商品id和商品等级查询商品评价（分页）
-     * @param itemId 商品id
-     * @param level  商品评价等级
-     * @param page 当前页码
+     * @param itemId   商品id
+     * @param level    商品评价等级
+     * @param page     当前页码
      * @param pageSize 每页分页数量
      * @return 商品评价列表
      */
     public PagedGridResult queryPagedComments(String itemId, Integer level, Long page, Long pageSize);
+
+    /**
+     * 搜索商品列表（分页）
+     * @param keywords 搜索关键词
+     * @param sort     排序方式
+     * @param page     当前页码
+     * @param pageSize 每页分页数量
+     * @return 商品搜索结果分页列表
+     */
+    public PagedGridResult searchItems(String keywords, String sort, Long page, Long pageSize);
+
+    /**
+     * 根据商品分类id搜索商品列表（分页）
+     * @param catId    商品分类id
+     * @param sort     排序方式
+     * @param page     当前页码
+     * @param pageSize 每页分页数量
+     * @return 商品搜索结果分页列表
+     */
+    public PagedGridResult searchItemsByThirdCat(Integer catId, String sort, Long page, Long pageSize);
 }

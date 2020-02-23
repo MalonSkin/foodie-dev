@@ -23,7 +23,9 @@ public class BaseController {
 
     /** 默认页码为 1 */
     public static final Long DEFAULT_PAGE = 1L;
-    /** 默认每页显示条数为 10 */
-    public static final Long DEFAULT_PAGE_SIZE = 10L;
+    /** 默认每页显示条数为 20 */
+    public static final Long DEFAULT_PAGE_SIZE = 20L;
+    /** 商品评价每页显示条数为 10 */
+    public static final Long COMMENT_PAGE_SIZE = 10L;
 
 }

@@ -73,9 +73,57 @@ public class ItemsController extends BaseController {
             page = DEFAULT_PAGE;
         }
         if (pageSize == null) {
-            pageSize = DEFAULT_PAGE_SIZE;
+            pageSize = COMMENT_PAGE_SIZE;
         }
         return IMOOCJSONResult.ok(itemService.queryPagedComments(itemId, level, page, pageSize));
+    }
+
+    @ApiOperation(value = "搜索商品列表", notes = "搜索商品列表", httpMethod = "GET")
+    @GetMapping("/search")
+    public IMOOCJSONResult comments(
+            @ApiParam(name = "keywords", value = "关键词", required = true)
+            @RequestParam String keywords,
+            @ApiParam(name = "sort", value = "排序", required = false)
+            @RequestParam String sort,
+            @ApiParam(name = "page", value = "当前页码", required = false)
+            @RequestParam Long page,
+            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false)
+            @RequestParam Long pageSize
+    ) {
+        if (StringUtils.isBlank(keywords)) {
+            return IMOOCJSONResult.errorMsg(null);
+        }
+        if (page == null) {
+            page = DEFAULT_PAGE;
+        }
+        if (pageSize == null) {
+            pageSize = DEFAULT_PAGE_SIZE;
+        }
+        return IMOOCJSONResult.ok(itemService.searchItems(keywords, sort, page, pageSize));
+    }
+
+    @ApiOperation(value = "根据商品分类id搜索商品列表", notes = "搜索商品列表", httpMethod = "GET")
+    @GetMapping("/catItems")
+    public IMOOCJSONResult catItems(
+            @ApiParam(name = "catId", value = "第三级分类id", required = true)
+            @RequestParam Integer catId,
+            @ApiParam(name = "sort", value = "排序", required = false)
+            @RequestParam String sort,
+            @ApiParam(name = "page", value = "当前页码", required = false)
+            @RequestParam Long page,
+            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false)
+            @RequestParam Long pageSize
+    ) {
+        if (catId == null) {
+            return IMOOCJSONResult.errorMsg(null);
+        }
+        if (page == null) {
+            page = DEFAULT_PAGE;
+        }
+        if (pageSize == null) {
+            pageSize = DEFAULT_PAGE_SIZE;
+        }
+        return IMOOCJSONResult.ok(itemService.searchItemsByThirdCat(catId, sort, page, pageSize));
     }
 
 }
