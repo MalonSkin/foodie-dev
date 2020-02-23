@@ -1,6 +1,5 @@
 package com.zhangzz;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
  * @date 2020/2/7 16:45
  */
 @SpringBootApplication
-@MapperScan("com.zhangzz.mapper")
 @ComponentScan(basePackages = {"com.zhangzz", "org.n3r.idworker"}) // 扫描所有包以及相关的组件包
 public class ApiApplication {
 
