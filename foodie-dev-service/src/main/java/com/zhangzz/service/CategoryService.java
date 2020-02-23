@@ -7,7 +7,7 @@ import com.zhangzz.pojo.vo.NewItemsVO;
 import java.util.List;
 
 /**
- * 商品分类层接口
+ * 商品分类服务层接口
  * @author zhangzz
  * @date 2020/2/22 12:21
  */
