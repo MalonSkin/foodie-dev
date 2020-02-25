@@ -5,6 +5,7 @@ import com.zhangzz.pojo.ItemsImg;
 import com.zhangzz.pojo.ItemsParam;
 import com.zhangzz.pojo.ItemsSpec;
 import com.zhangzz.pojo.vo.ItemInfoVO;
+import com.zhangzz.pojo.vo.ShopCartVO;
 import com.zhangzz.service.ItemService;
 import com.zhangzz.utils.IMOOCJSONResult;
 import io.swagger.annotations.Api;
@@ -124,6 +125,20 @@ public class ItemsController extends BaseController {
             pageSize = DEFAULT_PAGE_SIZE;
         }
         return IMOOCJSONResult.ok(itemService.searchItemsByThirdCat(catId, sort, page, pageSize));
+    }
+
+    /** 用于用户长时间未登录网站，刷新购物车中的数据（主要是商品价格），类似京东淘宝 */
+    @ApiOperation(value = "根据商品规格ids查找最新的商品数据", notes = "根据商品规格ids查找最新的商品数据", httpMethod = "GET")
+    @GetMapping("/refresh")
+    public IMOOCJSONResult refresh(
+            @ApiParam(name = "itemSpecIds", value = "拼接的规格ids", required = true, example = "1001,1003,1005")
+            @RequestParam String itemSpecIds
+    ) {
+        if (StringUtils.isBlank(itemSpecIds)) {
+            return IMOOCJSONResult.ok();
+        }
+        List<ShopCartVO> list = itemService.queryItemsBySpecIds(itemSpecIds);
+        return IMOOCJSONResult.ok(list);
     }
 
 }

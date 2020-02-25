@@ -3,6 +3,7 @@ package com.zhangzz.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhangzz.enums.CommentLevel;
 import com.zhangzz.mapper.*;
@@ -10,9 +11,11 @@ import com.zhangzz.pojo.*;
 import com.zhangzz.pojo.vo.CommentLevelCountsVO;
 import com.zhangzz.pojo.vo.ItemCommentVO;
 import com.zhangzz.pojo.vo.SearchItemsVO;
+import com.zhangzz.pojo.vo.ShopCartVO;
 import com.zhangzz.service.ItemService;
 import com.zhangzz.utils.DesensitizationUtil;
 import com.zhangzz.utils.PagedGridResult;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -121,6 +124,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
     public PagedGridResult searchItemsByThirdCat(Integer catId, String sort, Long page, Long pageSize) {
         Map<String, Object> paramsMap = Maps.newHashMap();
         paramsMap.put("catId", catId);
@@ -128,5 +132,12 @@ public class ItemServiceImpl implements ItemService {
         Page<ItemCommentVO> queryPage = new Page<>(page, pageSize);
         IPage<SearchItemsVO> iPage = itemsMapper.searchItemsByThirdCat(queryPage, paramsMap);
         return new PagedGridResult().fromPage(iPage);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
+    public List<ShopCartVO> queryItemsBySpecIds(String specIds) {
+        List<String> specIdsList = Lists.newArrayList(StringUtils.split(specIds, ","));
+        return itemsMapper.queryItemsBySpecIds(specIdsList);
     }
 }

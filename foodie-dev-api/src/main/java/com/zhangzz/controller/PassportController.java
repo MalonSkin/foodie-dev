@@ -92,6 +92,10 @@ public class PassportController extends BaseController {
         setNullProperty(user);
         // 设置cookie
         CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(user), true);
+
+        // TODO 生成用户token，存入Redis会话
+        // TODO 同步购物车数据
+
         return IMOOCJSONResult.ok(user);
     }
 
@@ -111,7 +115,7 @@ public class PassportController extends BaseController {
         // 清除用户相关的cookie
         CookieUtils.deleteCookie(request, response, "user");
 
-        // TODO 用户退出登录，需要清空后无车
+        // TODO 用户退出登录，需要清空购物车
         // TODO 分布式会话中需要清除用户数据
 
         return IMOOCJSONResult.ok();
