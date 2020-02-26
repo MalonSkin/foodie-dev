@@ -31,7 +31,7 @@ public class ShopCartController extends BaseController {
 
     @ApiOperation(value = "从购物车中删除商品", notes = "从购物车中删除商品", httpMethod = "POST")
     @PostMapping("/del")
-    public IMOOCJSONResult del(@RequestParam String userId, @RequestBody String itemSpecId) {
+    public IMOOCJSONResult del(@RequestParam String userId, @RequestParam String itemSpecId) {
 
         if (StringUtils.isBlank(userId) || StringUtils.isBlank(itemSpecId)) {
             return IMOOCJSONResult.errorMsg(null);
