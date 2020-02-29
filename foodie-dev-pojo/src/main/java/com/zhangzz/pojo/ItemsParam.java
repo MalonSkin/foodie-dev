@@ -83,7 +83,6 @@ public class ItemsParam {
 
     /**
      * 获取商品参数id
-     *
      * @return id - 商品参数id
      */
     public String getId() {
@@ -92,7 +91,6 @@ public class ItemsParam {
 
     /**
      * 设置商品参数id
-     *
      * @param id 商品参数id
      */
     public void setId(String id) {
@@ -101,7 +99,6 @@ public class ItemsParam {
 
     /**
      * 获取商品外键id
-     *
      * @return item_id - 商品外键id
      */
     public String getItemId() {
@@ -110,7 +107,6 @@ public class ItemsParam {
 
     /**
      * 设置商品外键id
-     *
      * @param itemId 商品外键id
      */
     public void setItemId(String itemId) {
@@ -119,7 +115,6 @@ public class ItemsParam {
 
     /**
      * 获取产地 产地，例：中国江苏
-     *
      * @return produc_place - 产地 产地，例：中国江苏
      */
     public String getProducPlace() {
@@ -128,7 +123,6 @@ public class ItemsParam {
 
     /**
      * 设置产地 产地，例：中国江苏
-     *
      * @param producPlace 产地 产地，例：中国江苏
      */
     public void setProducPlace(String producPlace) {
@@ -137,7 +131,6 @@ public class ItemsParam {
 
     /**
      * 获取保质期 保质期，例：180天
-     *
      * @return foot_period - 保质期 保质期，例：180天
      */
     public String getFootPeriod() {
@@ -146,7 +139,6 @@ public class ItemsParam {
 
     /**
      * 设置保质期 保质期，例：180天
-     *
      * @param footPeriod 保质期 保质期，例：180天
      */
     public void setFootPeriod(String footPeriod) {
@@ -155,7 +147,6 @@ public class ItemsParam {
 
     /**
      * 获取品牌名 品牌名，例：三只大灰狼
-     *
      * @return brand - 品牌名 品牌名，例：三只大灰狼
      */
     public String getBrand() {
@@ -164,7 +155,6 @@ public class ItemsParam {
 
     /**
      * 设置品牌名 品牌名，例：三只大灰狼
-     *
      * @param brand 品牌名 品牌名，例：三只大灰狼
      */
     public void setBrand(String brand) {
@@ -173,7 +163,6 @@ public class ItemsParam {
 
     /**
      * 获取生产厂名 生产厂名，例：大灰狼工厂
-     *
      * @return factory_name - 生产厂名 生产厂名，例：大灰狼工厂
      */
     public String getFactoryName() {
@@ -182,7 +171,6 @@ public class ItemsParam {
 
     /**
      * 设置生产厂名 生产厂名，例：大灰狼工厂
-     *
      * @param factoryName 生产厂名 生产厂名，例：大灰狼工厂
      */
     public void setFactoryName(String factoryName) {
@@ -191,7 +179,6 @@ public class ItemsParam {
 
     /**
      * 获取生产厂址 生产厂址，例：大灰狼生产基地
-     *
      * @return factory_address - 生产厂址 生产厂址，例：大灰狼生产基地
      */
     public String getFactoryAddress() {
@@ -200,7 +187,6 @@ public class ItemsParam {
 
     /**
      * 设置生产厂址 生产厂址，例：大灰狼生产基地
-     *
      * @param factoryAddress 生产厂址 生产厂址，例：大灰狼生产基地
      */
     public void setFactoryAddress(String factoryAddress) {
@@ -209,7 +195,6 @@ public class ItemsParam {
 
     /**
      * 获取包装方式 包装方式，例：袋装
-     *
      * @return packaging_method - 包装方式 包装方式，例：袋装
      */
     public String getPackagingMethod() {
@@ -218,7 +203,6 @@ public class ItemsParam {
 
     /**
      * 设置包装方式 包装方式，例：袋装
-     *
      * @param packagingMethod 包装方式 包装方式，例：袋装
      */
     public void setPackagingMethod(String packagingMethod) {
@@ -227,7 +211,6 @@ public class ItemsParam {
 
     /**
      * 获取规格重量 规格重量，例：35g
-     *
      * @return weight - 规格重量 规格重量，例：35g
      */
     public String getWeight() {
@@ -236,7 +219,6 @@ public class ItemsParam {
 
     /**
      * 设置规格重量 规格重量，例：35g
-     *
      * @param weight 规格重量 规格重量，例：35g
      */
     public void setWeight(String weight) {
@@ -245,7 +227,6 @@ public class ItemsParam {
 
     /**
      * 获取存储方法 存储方法，例：常温5~25°
-     *
      * @return storage_method - 存储方法 存储方法，例：常温5~25°
      */
     public String getStorageMethod() {
@@ -254,7 +235,6 @@ public class ItemsParam {
 
     /**
      * 设置存储方法 存储方法，例：常温5~25°
-     *
      * @param storageMethod 存储方法 存储方法，例：常温5~25°
      */
     public void setStorageMethod(String storageMethod) {
@@ -263,7 +243,6 @@ public class ItemsParam {
 
     /**
      * 获取食用方式 食用方式，例：开袋即食
-     *
      * @return eat_method - 食用方式 食用方式，例：开袋即食
      */
     public String getEatMethod() {
@@ -272,7 +251,6 @@ public class ItemsParam {
 
     /**
      * 设置食用方式 食用方式，例：开袋即食
-     *
      * @param eatMethod 食用方式 食用方式，例：开袋即食
      */
     public void setEatMethod(String eatMethod) {
@@ -281,7 +259,6 @@ public class ItemsParam {
 
     /**
      * 获取创建时间
-     *
      * @return created_time - 创建时间
      */
     public Date getCreatedTime() {
@@ -290,7 +267,6 @@ public class ItemsParam {
 
     /**
      * 设置创建时间
-     *
      * @param createdTime 创建时间
      */
     public void setCreatedTime(Date createdTime) {
@@ -299,7 +275,6 @@ public class ItemsParam {
 
     /**
      * 获取更新时间
-     *
      * @return updated_time - 更新时间
      */
     public Date getUpdatedTime() {
@@ -308,7 +283,6 @@ public class ItemsParam {
 
     /**
      * 设置更新时间
-     *
      * @param updatedTime 更新时间
      */
     public void setUpdatedTime(Date updatedTime) {

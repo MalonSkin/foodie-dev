@@ -49,7 +49,6 @@ public class Category {
 
     /**
      * 获取主键
-     *
      * @return id - 主键
      */
     public Integer getId() {
@@ -58,7 +57,6 @@ public class Category {
 
     /**
      * 设置主键
-     *
      * @param id 主键
      */
     public void setId(Integer id) {
@@ -67,7 +65,6 @@ public class Category {
 
     /**
      * 获取分类名称
-     *
      * @return name - 分类名称
      */
     public String getName() {
@@ -76,7 +73,6 @@ public class Category {
 
     /**
      * 设置分类名称
-     *
      * @param name 分类名称
      */
     public void setName(String name) {
@@ -85,7 +81,6 @@ public class Category {
 
     /**
      * 获取分类类型
-     *
      * @return type - 分类类型
      */
     public Integer getType() {
@@ -94,7 +89,6 @@ public class Category {
 
     /**
      * 设置分类类型
-     *
      * @param type 分类类型
      */
     public void setType(Integer type) {
@@ -103,7 +97,6 @@ public class Category {
 
     /**
      * 获取父id
-     *
      * @return father_id - 父id
      */
     public Integer getFatherId() {
@@ -112,7 +105,6 @@ public class Category {
 
     /**
      * 设置父id
-     *
      * @param fatherId 父id
      */
     public void setFatherId(Integer fatherId) {
@@ -121,7 +113,6 @@ public class Category {
 
     /**
      * 获取图标
-     *
      * @return logo - 图标
      */
     public String getLogo() {
@@ -130,7 +121,6 @@ public class Category {
 
     /**
      * 设置图标
-     *
      * @param logo 图标
      */
     public void setLogo(String logo) {
@@ -139,7 +129,6 @@ public class Category {
 
     /**
      * 获取口号
-     *
      * @return slogan - 口号
      */
     public String getSlogan() {
@@ -148,7 +137,6 @@ public class Category {
 
     /**
      * 设置口号
-     *
      * @param slogan 口号
      */
     public void setSlogan(String slogan) {
@@ -157,7 +145,6 @@ public class Category {
 
     /**
      * 获取分类图
-     *
      * @return cat_image - 分类图
      */
     public String getCatImage() {
@@ -166,7 +153,6 @@ public class Category {
 
     /**
      * 设置分类图
-     *
      * @param catImage 分类图
      */
     public void setCatImage(String catImage) {
@@ -175,7 +161,6 @@ public class Category {
 
     /**
      * 获取背景颜色
-     *
      * @return bg_color - 背景颜色
      */
     public String getBgColor() {
@@ -184,7 +169,6 @@ public class Category {
 
     /**
      * 设置背景颜色
-     *
      * @param bgColor 背景颜色
      */
     public void setBgColor(String bgColor) {

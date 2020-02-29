@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhangzz.enums.CommentLevel;
+import com.zhangzz.enums.YesOrNo;
 import com.zhangzz.mapper.*;
 import com.zhangzz.pojo.*;
 import com.zhangzz.pojo.vo.CommentLevelCountsVO;
@@ -139,5 +140,36 @@ public class ItemServiceImpl implements ItemService {
     public List<ShopCartVO> queryItemsBySpecIds(String specIds) {
         List<String> specIdsList = Lists.newArrayList(StringUtils.split(specIds, ","));
         return itemsMapper.queryItemsBySpecIds(specIdsList);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
+    public ItemsSpec queryItemSpecById(String specId) {
+        return itemsSpecMapper.selectById(specId);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
+    public String queryItemMainImgById(String itemId) {
+        QueryWrapper<ItemsImg> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(ItemsImg::getItemId, itemId)
+                .eq(ItemsImg::getIsMain, YesOrNo.YES.type);
+        ItemsImg itemImg = itemsImgMapper.selectOne(queryWrapper);
+        return itemImg != null ? itemImg.getUrl() : "";
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    public void decreaseItemSpecStock(String specId, int buyCounts) {
+        // 使用分布式锁 zookeeper Redis
+        // lockUtil.getLock(); -- 加锁
+        // 执行扣库存的逻辑
+        // lockUtil.unLock(); -- 解锁
+
+        // 目前单体应用使用数据库乐观锁
+        int result = itemsMapper.decreaseItemSpecStock(specId, buyCounts);
+        if (result != 1) {
+            throw new RuntimeException("创建订单失败，原因：库存不足");
+        }
     }
 }

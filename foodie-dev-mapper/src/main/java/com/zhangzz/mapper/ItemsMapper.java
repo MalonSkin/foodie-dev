@@ -51,4 +51,6 @@ public interface ItemsMapper extends BaseMapper<Items> {
      * @return 最新的购物车中商品数据
      */
     public List<ShopCartVO> queryItemsBySpecIds(@Param("paramsList") List specIdsList);
+
+    public int decreaseItemSpecStock(@Param("specId")String specId,@Param("pendingCounts")int pendingCounts);
 }

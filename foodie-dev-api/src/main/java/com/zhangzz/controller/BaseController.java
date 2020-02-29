@@ -28,4 +28,7 @@ public class BaseController {
     /** 商品评价每页显示条数为 10 */
     public static final Long COMMENT_PAGE_SIZE = 10L;
 
+    /** 购物车 cookie */
+    public static final String FOODIE_SHOPCART = "shopcart";
+
 }

@@ -95,7 +95,6 @@ public class Orders {
 
     /**
      * 获取订单主键;同时也是订单编号
-     *
      * @return id - 订单主键;同时也是订单编号
      */
     public String getId() {
@@ -104,7 +103,6 @@ public class Orders {
 
     /**
      * 设置订单主键;同时也是订单编号
-     *
      * @param id 订单主键;同时也是订单编号
      */
     public void setId(String id) {
@@ -113,7 +111,6 @@ public class Orders {
 
     /**
      * 获取用户id
-     *
      * @return user_id - 用户id
      */
     public String getUserId() {
@@ -122,7 +119,6 @@ public class Orders {
 
     /**
      * 设置用户id
-     *
      * @param userId 用户id
      */
     public void setUserId(String userId) {
@@ -131,7 +127,6 @@ public class Orders {
 
     /**
      * 获取收货人快照
-     *
      * @return receiver_name - 收货人快照
      */
     public String getReceiverName() {
@@ -140,7 +135,6 @@ public class Orders {
 
     /**
      * 设置收货人快照
-     *
      * @param receiverName 收货人快照
      */
     public void setReceiverName(String receiverName) {
@@ -149,7 +143,6 @@ public class Orders {
 
     /**
      * 获取收货人手机号快照
-     *
      * @return receiver_mobile - 收货人手机号快照
      */
     public String getReceiverMobile() {
@@ -158,7 +151,6 @@ public class Orders {
 
     /**
      * 设置收货人手机号快照
-     *
      * @param receiverMobile 收货人手机号快照
      */
     public void setReceiverMobile(String receiverMobile) {
@@ -167,7 +159,6 @@ public class Orders {
 
     /**
      * 获取收货地址快照
-     *
      * @return receiver_address - 收货地址快照
      */
     public String getReceiverAddress() {
@@ -176,7 +167,6 @@ public class Orders {
 
     /**
      * 设置收货地址快照
-     *
      * @param receiverAddress 收货地址快照
      */
     public void setReceiverAddress(String receiverAddress) {
@@ -185,7 +175,6 @@ public class Orders {
 
     /**
      * 获取订单总价格
-     *
      * @return total_amount - 订单总价格
      */
     public Integer getTotalAmount() {
@@ -194,7 +183,6 @@ public class Orders {
 
     /**
      * 设置订单总价格
-     *
      * @param totalAmount 订单总价格
      */
     public void setTotalAmount(Integer totalAmount) {
@@ -203,7 +191,6 @@ public class Orders {
 
     /**
      * 获取实际支付总价格
-     *
      * @return real_pay_amount - 实际支付总价格
      */
     public Integer getRealPayAmount() {
@@ -212,7 +199,6 @@ public class Orders {
 
     /**
      * 设置实际支付总价格
-     *
      * @param realPayAmount 实际支付总价格
      */
     public void setRealPayAmount(Integer realPayAmount) {
@@ -221,7 +207,6 @@ public class Orders {
 
     /**
      * 获取邮费;默认可以为零，代表包邮
-     *
      * @return post_amount - 邮费;默认可以为零，代表包邮
      */
     public Integer getPostAmount() {
@@ -230,7 +215,6 @@ public class Orders {
 
     /**
      * 设置邮费;默认可以为零，代表包邮
-     *
      * @param postAmount 邮费;默认可以为零，代表包邮
      */
     public void setPostAmount(Integer postAmount) {
@@ -239,7 +223,6 @@ public class Orders {
 
     /**
      * 获取支付方式
-     *
      * @return pay_method - 支付方式
      */
     public Integer getPayMethod() {
@@ -248,7 +231,6 @@ public class Orders {
 
     /**
      * 设置支付方式
-     *
      * @param payMethod 支付方式
      */
     public void setPayMethod(Integer payMethod) {
@@ -257,7 +239,6 @@ public class Orders {
 
     /**
      * 获取买家留言
-     *
      * @return left_msg - 买家留言
      */
     public String getLeftMsg() {
@@ -266,7 +247,6 @@ public class Orders {
 
     /**
      * 设置买家留言
-     *
      * @param leftMsg 买家留言
      */
     public void setLeftMsg(String leftMsg) {
@@ -275,7 +255,6 @@ public class Orders {
 
     /**
      * 获取扩展字段
-     *
      * @return extand - 扩展字段
      */
     public String getExtand() {
@@ -284,7 +263,6 @@ public class Orders {
 
     /**
      * 设置扩展字段
-     *
      * @param extand 扩展字段
      */
     public void setExtand(String extand) {
@@ -293,7 +271,6 @@ public class Orders {
 
     /**
      * 获取买家是否评价;1：已评价，0：未评价
-     *
      * @return is_comment - 买家是否评价;1：已评价，0：未评价
      */
     public Integer getIsComment() {
@@ -302,7 +279,6 @@ public class Orders {
 
     /**
      * 设置买家是否评价;1：已评价，0：未评价
-     *
      * @param isComment 买家是否评价;1：已评价，0：未评价
      */
     public void setIsComment(Integer isComment) {
@@ -311,7 +287,6 @@ public class Orders {
 
     /**
      * 获取逻辑删除状态;1: 删除 0:未删除
-     *
      * @return is_delete - 逻辑删除状态;1: 删除 0:未删除
      */
     public Integer getIsDelete() {
@@ -320,7 +295,6 @@ public class Orders {
 
     /**
      * 设置逻辑删除状态;1: 删除 0:未删除
-     *
      * @param isDelete 逻辑删除状态;1: 删除 0:未删除
      */
     public void setIsDelete(Integer isDelete) {
@@ -329,7 +303,6 @@ public class Orders {
 
     /**
      * 获取创建时间（成交时间）
-     *
      * @return created_time - 创建时间（成交时间）
      */
     public Date getCreatedTime() {
@@ -338,7 +311,6 @@ public class Orders {
 
     /**
      * 设置创建时间（成交时间）
-     *
      * @param createdTime 创建时间（成交时间）
      */
     public void setCreatedTime(Date createdTime) {
@@ -347,7 +319,6 @@ public class Orders {
 
     /**
      * 获取更新时间
-     *
      * @return updated_time - 更新时间
      */
     public Date getUpdatedTime() {
@@ -356,7 +327,6 @@ public class Orders {
 
     /**
      * 设置更新时间
-     *
      * @param updatedTime 更新时间
      */
     public void setUpdatedTime(Date updatedTime) {

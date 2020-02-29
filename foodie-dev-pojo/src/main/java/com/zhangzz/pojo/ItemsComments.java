@@ -66,7 +66,6 @@ public class ItemsComments {
 
     /**
      * 获取id主键
-     *
      * @return id - id主键
      */
     public String getId() {
@@ -75,7 +74,6 @@ public class ItemsComments {
 
     /**
      * 设置id主键
-     *
      * @param id id主键
      */
     public void setId(String id) {
@@ -84,7 +82,6 @@ public class ItemsComments {
 
     /**
      * 获取用户id 用户名须脱敏
-     *
      * @return user_id - 用户id 用户名须脱敏
      */
     public String getUserId() {
@@ -93,7 +90,6 @@ public class ItemsComments {
 
     /**
      * 设置用户id 用户名须脱敏
-     *
      * @param userId 用户id 用户名须脱敏
      */
     public void setUserId(String userId) {
@@ -102,7 +98,6 @@ public class ItemsComments {
 
     /**
      * 获取商品id
-     *
      * @return item_id - 商品id
      */
     public String getItemId() {
@@ -111,7 +106,6 @@ public class ItemsComments {
 
     /**
      * 设置商品id
-     *
      * @param itemId 商品id
      */
     public void setItemId(String itemId) {
@@ -120,7 +114,6 @@ public class ItemsComments {
 
     /**
      * 获取商品名称
-     *
      * @return item_name - 商品名称
      */
     public String getItemName() {
@@ -129,7 +122,6 @@ public class ItemsComments {
 
     /**
      * 设置商品名称
-     *
      * @param itemName 商品名称
      */
     public void setItemName(String itemName) {
@@ -138,7 +130,6 @@ public class ItemsComments {
 
     /**
      * 获取商品规格id 可为空
-     *
      * @return item_spec_id - 商品规格id 可为空
      */
     public String getItemSpecId() {
@@ -147,7 +138,6 @@ public class ItemsComments {
 
     /**
      * 设置商品规格id 可为空
-     *
      * @param itemSpecId 商品规格id 可为空
      */
     public void setItemSpecId(String itemSpecId) {
@@ -156,7 +146,6 @@ public class ItemsComments {
 
     /**
      * 获取规格名称 可为空
-     *
      * @return sepc_name - 规格名称 可为空
      */
     public String getSepcName() {
@@ -165,7 +154,6 @@ public class ItemsComments {
 
     /**
      * 设置规格名称 可为空
-     *
      * @param sepcName 规格名称 可为空
      */
     public void setSepcName(String sepcName) {
@@ -174,7 +162,6 @@ public class ItemsComments {
 
     /**
      * 获取评价等级 1：好评 2：中评 3：差评
-     *
      * @return comment_level - 评价等级 1：好评 2：中评 3：差评
      */
     public Integer getCommentLevel() {
@@ -183,7 +170,6 @@ public class ItemsComments {
 
     /**
      * 设置评价等级 1：好评 2：中评 3：差评
-     *
      * @param commentLevel 评价等级 1：好评 2：中评 3：差评
      */
     public void setCommentLevel(Integer commentLevel) {
@@ -192,7 +178,6 @@ public class ItemsComments {
 
     /**
      * 获取评价内容
-     *
      * @return content - 评价内容
      */
     public String getContent() {
@@ -201,7 +186,6 @@ public class ItemsComments {
 
     /**
      * 设置评价内容
-     *
      * @param content 评价内容
      */
     public void setContent(String content) {
@@ -210,7 +194,6 @@ public class ItemsComments {
 
     /**
      * 获取创建时间
-     *
      * @return created_time - 创建时间
      */
     public Date getCreatedTime() {
@@ -219,7 +202,6 @@ public class ItemsComments {
 
     /**
      * 设置创建时间
-     *
      * @param createdTime 创建时间
      */
     public void setCreatedTime(Date createdTime) {
@@ -228,7 +210,6 @@ public class ItemsComments {
 
     /**
      * 获取更新时间
-     *
      * @return updated_time - 更新时间
      */
     public Date getUpdatedTime() {
@@ -237,7 +218,6 @@ public class ItemsComments {
 
     /**
      * 设置更新时间
-     *
      * @param updatedTime 更新时间
      */
     public void setUpdatedTime(Date updatedTime) {

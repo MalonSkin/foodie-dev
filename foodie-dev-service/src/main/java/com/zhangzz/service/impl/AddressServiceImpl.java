@@ -74,4 +74,12 @@ public class AddressServiceImpl implements AddressService {
         queryWrapper.lambda().eq(UserAddress::getId, addressId).eq(UserAddress::getUserId, userId);
         userAddressMapper.delete(queryWrapper);
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
+    public UserAddress queryUserAddress(String userId, String addressId) {
+        QueryWrapper<UserAddress> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(UserAddress::getId, addressId).eq(UserAddress::getUserId, userId);
+        return userAddressMapper.selectOne(queryWrapper);
+    }
 }

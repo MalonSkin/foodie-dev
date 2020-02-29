@@ -59,7 +59,6 @@ public class OrderItems {
 
     /**
      * 获取主键id
-     *
      * @return id - 主键id
      */
     public String getId() {
@@ -68,7 +67,6 @@ public class OrderItems {
 
     /**
      * 设置主键id
-     *
      * @param id 主键id
      */
     public void setId(String id) {
@@ -77,7 +75,6 @@ public class OrderItems {
 
     /**
      * 获取归属订单id
-     *
      * @return order_id - 归属订单id
      */
     public String getOrderId() {
@@ -86,7 +83,6 @@ public class OrderItems {
 
     /**
      * 设置归属订单id
-     *
      * @param orderId 归属订单id
      */
     public void setOrderId(String orderId) {
@@ -95,7 +91,6 @@ public class OrderItems {
 
     /**
      * 获取商品id
-     *
      * @return item_id - 商品id
      */
     public String getItemId() {
@@ -104,7 +99,6 @@ public class OrderItems {
 
     /**
      * 设置商品id
-     *
      * @param itemId 商品id
      */
     public void setItemId(String itemId) {
@@ -113,7 +107,6 @@ public class OrderItems {
 
     /**
      * 获取商品图片
-     *
      * @return item_img - 商品图片
      */
     public String getItemImg() {
@@ -122,7 +115,6 @@ public class OrderItems {
 
     /**
      * 设置商品图片
-     *
      * @param itemImg 商品图片
      */
     public void setItemImg(String itemImg) {
@@ -131,7 +123,6 @@ public class OrderItems {
 
     /**
      * 获取商品名称
-     *
      * @return item_name - 商品名称
      */
     public String getItemName() {
@@ -140,7 +131,6 @@ public class OrderItems {
 
     /**
      * 设置商品名称
-     *
      * @param itemName 商品名称
      */
     public void setItemName(String itemName) {
@@ -149,7 +139,6 @@ public class OrderItems {
 
     /**
      * 获取规格id
-     *
      * @return item_spec_id - 规格id
      */
     public String getItemSpecId() {
@@ -158,7 +147,6 @@ public class OrderItems {
 
     /**
      * 设置规格id
-     *
      * @param itemSpecId 规格id
      */
     public void setItemSpecId(String itemSpecId) {
@@ -167,7 +155,6 @@ public class OrderItems {
 
     /**
      * 获取规格名称
-     *
      * @return item_spec_name - 规格名称
      */
     public String getItemSpecName() {
@@ -176,7 +163,6 @@ public class OrderItems {
 
     /**
      * 设置规格名称
-     *
      * @param itemSpecName 规格名称
      */
     public void setItemSpecName(String itemSpecName) {
@@ -185,7 +171,6 @@ public class OrderItems {
 
     /**
      * 获取成交价格
-     *
      * @return price - 成交价格
      */
     public Integer getPrice() {
@@ -194,7 +179,6 @@ public class OrderItems {
 
     /**
      * 设置成交价格
-     *
      * @param price 成交价格
      */
     public void setPrice(Integer price) {
@@ -203,7 +187,6 @@ public class OrderItems {
 
     /**
      * 获取购买数量
-     *
      * @return buy_counts - 购买数量
      */
     public Integer getBuyCounts() {
@@ -212,7 +195,6 @@ public class OrderItems {
 
     /**
      * 设置购买数量
-     *
      * @param buyCounts 购买数量
      */
     public void setBuyCounts(Integer buyCounts) {

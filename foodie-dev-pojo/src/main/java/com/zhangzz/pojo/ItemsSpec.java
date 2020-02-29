@@ -59,7 +59,6 @@ public class ItemsSpec {
 
     /**
      * 获取商品规格id
-     *
      * @return id - 商品规格id
      */
     public String getId() {
@@ -68,7 +67,6 @@ public class ItemsSpec {
 
     /**
      * 设置商品规格id
-     *
      * @param id 商品规格id
      */
     public void setId(String id) {
@@ -77,7 +75,6 @@ public class ItemsSpec {
 
     /**
      * 获取商品外键id
-     *
      * @return item_id - 商品外键id
      */
     public String getItemId() {
@@ -86,7 +83,6 @@ public class ItemsSpec {
 
     /**
      * 设置商品外键id
-     *
      * @param itemId 商品外键id
      */
     public void setItemId(String itemId) {
@@ -95,7 +91,6 @@ public class ItemsSpec {
 
     /**
      * 获取规格名称
-     *
      * @return name - 规格名称
      */
     public String getName() {
@@ -104,7 +99,6 @@ public class ItemsSpec {
 
     /**
      * 设置规格名称
-     *
      * @param name 规格名称
      */
     public void setName(String name) {
@@ -113,7 +107,6 @@ public class ItemsSpec {
 
     /**
      * 获取库存
-     *
      * @return stock - 库存
      */
     public Integer getStock() {
@@ -122,7 +115,6 @@ public class ItemsSpec {
 
     /**
      * 设置库存
-     *
      * @param stock 库存
      */
     public void setStock(Integer stock) {
@@ -131,7 +123,6 @@ public class ItemsSpec {
 
     /**
      * 获取折扣力度
-     *
      * @return discounts - 折扣力度
      */
     public BigDecimal getDiscounts() {
@@ -140,7 +131,6 @@ public class ItemsSpec {
 
     /**
      * 设置折扣力度
-     *
      * @param discounts 折扣力度
      */
     public void setDiscounts(BigDecimal discounts) {
@@ -149,7 +139,6 @@ public class ItemsSpec {
 
     /**
      * 获取优惠价
-     *
      * @return price_discount - 优惠价
      */
     public Integer getPriceDiscount() {
@@ -158,7 +147,6 @@ public class ItemsSpec {
 
     /**
      * 设置优惠价
-     *
      * @param priceDiscount 优惠价
      */
     public void setPriceDiscount(Integer priceDiscount) {
@@ -167,7 +155,6 @@ public class ItemsSpec {
 
     /**
      * 获取原价
-     *
      * @return price_normal - 原价
      */
     public Integer getPriceNormal() {
@@ -176,7 +163,6 @@ public class ItemsSpec {
 
     /**
      * 设置原价
-     *
      * @param priceNormal 原价
      */
     public void setPriceNormal(Integer priceNormal) {
@@ -185,7 +171,6 @@ public class ItemsSpec {
 
     /**
      * 获取创建时间
-     *
      * @return created_time - 创建时间
      */
     public Date getCreatedTime() {
@@ -194,7 +179,6 @@ public class ItemsSpec {
 
     /**
      * 设置创建时间
-     *
      * @param createdTime 创建时间
      */
     public void setCreatedTime(Date createdTime) {
@@ -203,7 +187,6 @@ public class ItemsSpec {
 
     /**
      * 获取更新时间
-     *
      * @return updated_time - 更新时间
      */
     public Date getUpdatedTime() {
@@ -212,7 +195,6 @@ public class ItemsSpec {
 
     /**
      * 设置更新时间
-     *
      * @param updatedTime 更新时间
      */
     public void setUpdatedTime(Date updatedTime) {
