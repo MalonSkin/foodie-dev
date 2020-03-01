@@ -1,20 +1,23 @@
 package com.zhangzz.pojo;
 
-import javax.persistence.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.util.Date;
 
-@Table(name = "user_address")
+@TableName(value = "user_address")
 public class UserAddress {
     /**
      * 地址主键id
      */
-    @Id
+    @TableId
     private String id;
 
     /**
      * 关联用户id
      */
-    @Column(name = "user_id")
+    @TableField(value = "user_id")
     private String userId;
 
     /**
@@ -55,19 +58,19 @@ public class UserAddress {
     /**
      * 是否默认地址
      */
-    @Column(name = "is_default")
+    @TableField(value = "is_default")
     private Integer isDefault;
 
     /**
      * 创建时间
      */
-    @Column(name = "created_time")
+    @TableField(value = "created_time")
     private Date createdTime;
 
     /**
      * 更新时间
      */
-    @Column(name = "updated_time")
+    @TableField(value = "updated_time")
     private Date updatedTime;
 
     /**

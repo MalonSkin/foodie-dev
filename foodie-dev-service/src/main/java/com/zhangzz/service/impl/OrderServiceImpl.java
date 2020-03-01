@@ -7,6 +7,7 @@ import com.zhangzz.mapper.OrderStatusMapper;
 import com.zhangzz.mapper.OrdersMapper;
 import com.zhangzz.pojo.*;
 import com.zhangzz.pojo.bo.SubmitOrderBO;
+import com.zhangzz.pojo.vo.MerchantOrdersVO;
 import com.zhangzz.service.AddressService;
 import com.zhangzz.service.ItemService;
 import com.zhangzz.service.OrderService;
@@ -41,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public String createOrder(SubmitOrderBO submitOrderBO) {
+    public MerchantOrdersVO createOrder(SubmitOrderBO submitOrderBO) {
 
         String userId = submitOrderBO.getUserId();
         String addressId = submitOrderBO.getAddressId();
@@ -118,6 +119,29 @@ public class OrderServiceImpl implements OrderService {
         waitPayOrderStatus.setCreatedTime(new Date());
         orderStatusMapper.insert(waitPayOrderStatus);
 
-        return orderId;
+        // 4.构建商户订单，用于传给支付中心
+        MerchantOrdersVO merchantOrdersVO = new MerchantOrdersVO();
+        merchantOrdersVO.setMerchantOrderId(orderId);
+        merchantOrdersVO.setMerchantUserId(userId);
+        merchantOrdersVO.setAmount(realPayAmount + postAmount);
+        merchantOrdersVO.setPayMethod(payMethod);
+        return merchantOrdersVO;
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    public void updateOrderStatus(String orderId, Integer orderStatus) {
+        OrderStatus paidStatus = new OrderStatus();
+        paidStatus.setOrderId(orderId);
+        paidStatus.setOrderStatus(orderStatus);
+        paidStatus.setPayTime(new Date());
+        orderStatusMapper.updateById(paidStatus);
+    }
+
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
+    @Override
+    public OrderStatus queryOrderStatusInfo(String orderId) {
+        return orderStatusMapper.selectById(orderId);
+    }
+
 }

@@ -1,37 +1,41 @@
 package com.zhangzz.pojo;
 
-import javax.persistence.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.util.Date;
 
+@TableName("carousel")
 public class Carousel {
     /**
      * 主键
      */
-    @Id
+    @TableId("id")
     private String id;
 
     /**
      * 图片 图片地址
      */
-    @Column(name = "image_url")
+    @TableField(value = "image_url")
     private String imageUrl;
 
     /**
      * 背景色
      */
-    @Column(name = "background_color")
+    @TableField(value = "background_color")
     private String backgroundColor;
 
     /**
      * 商品id 商品id
      */
-    @Column(name = "item_id")
+    @TableField(value = "item_id")
     private String itemId;
 
     /**
      * 商品分类id 商品分类id
      */
-    @Column(name = "cat_id")
+    @TableField(value = "cat_id")
     private String catId;
 
     /**
@@ -47,19 +51,19 @@ public class Carousel {
     /**
      * 是否展示
      */
-    @Column(name = "is_show")
+    @TableField(value = "is_show")
     private Integer isShow;
 
     /**
      * 创建时间 创建时间
      */
-    @Column(name = "create_time")
+    @TableField(value = "create_time")
     private Date createTime;
 
     /**
      * 更新时间 更新
      */
-    @Column(name = "update_time")
+    @TableField(value = "update_time")
     private Date updateTime;
 
     /**

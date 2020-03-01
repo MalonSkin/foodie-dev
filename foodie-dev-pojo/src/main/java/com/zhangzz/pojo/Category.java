@@ -1,28 +1,33 @@
 package com.zhangzz.pojo;
 
-import javax.persistence.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
+@TableName("category")
 public class Category {
     /**
      * 主键
      */
-    @Id
+    @TableId("id")
     private Integer id;
 
     /**
      * 分类名称
      */
+    @TableField(value = "name")
     private String name;
 
     /**
      * 分类类型
      */
+    @TableField(value = "type")
     private Integer type;
 
     /**
      * 父id
      */
-    @Column(name = "father_id")
+    @TableField(value = "father_id")
     private Integer fatherId;
 
     /**
@@ -38,13 +43,13 @@ public class Category {
     /**
      * 分类图
      */
-    @Column(name = "cat_image")
+    @TableField(value = "cat_image")
     private String catImage;
 
     /**
      * 背景颜色
      */
-    @Column(name = "bg_color")
+    @TableField(value = "bg_color")
     private String bgColor;
 
     /**

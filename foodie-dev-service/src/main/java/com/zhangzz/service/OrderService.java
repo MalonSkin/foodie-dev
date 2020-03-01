@@ -1,6 +1,8 @@
 package com.zhangzz.service;
 
+import com.zhangzz.pojo.OrderStatus;
 import com.zhangzz.pojo.bo.SubmitOrderBO;
+import com.zhangzz.pojo.vo.MerchantOrdersVO;
 
 /**
  * 订单服务层接口
@@ -12,7 +14,21 @@ public interface OrderService {
     /**
      * 用于创建订单相关信息
      * @param submitOrderBO
-     * @return 订单id
+     * @return 订单VO
      */
-    public String  createOrder(SubmitOrderBO submitOrderBO);
+    public MerchantOrdersVO createOrder(SubmitOrderBO submitOrderBO);
+
+    /**
+     * 修改订单状态
+     * @param orderId     订单id
+     * @param orderStatus 订单状态
+     */
+    public void updateOrderStatus(String orderId, Integer orderStatus);
+
+    /**
+     * 根据订单id查询订单状态
+     * @param orderId 订单id
+     * @return 订单状态
+     */
+    OrderStatus queryOrderStatusInfo(String orderId);
 }

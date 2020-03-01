@@ -1,13 +1,15 @@
 package com.zhangzz.pojo;
 
-import javax.persistence.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.util.Date;
 
 public class Users {
     /**
      * 主键id 用户id
      */
-    @Id
+    @TableId
     private String id;
 
     /**
@@ -58,13 +60,13 @@ public class Users {
     /**
      * 创建时间 创建时间
      */
-    @Column(name = "created_time")
+    @TableField(value = "created_time")
     private Date createdTime;
 
     /**
      * 更新时间 更新时间
      */
-    @Column(name = "updated_time")
+    @TableField(value = "updated_time")
     private Date updatedTime;
 
     /**

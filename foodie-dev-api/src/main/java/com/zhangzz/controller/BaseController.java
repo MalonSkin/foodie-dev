@@ -31,4 +31,10 @@ public class BaseController {
     /** 购物车 cookie */
     public static final String FOODIE_SHOPCART = "shopcart";
 
+    /** 支付中心的调用地址 */
+    public static final String PAYMENT_URL = "http://payment.t.mukewang.com/foodie-payment/payment/createMerchantOrder";
+
+    /** 微信支付成功 -> 支付中心 -> 天天吃货平台 -> 回调通知的URL */
+    public static final String PAY_RETURN_URL = "http://6vze9h.natappfree.cc/orders/notifyMerchantOrderPaid";
+
 }

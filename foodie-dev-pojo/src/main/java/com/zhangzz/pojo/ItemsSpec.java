@@ -1,21 +1,24 @@
 package com.zhangzz.pojo;
 
-import javax.persistence.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Table(name = "items_spec")
+@TableName(value = "items_spec")
 public class ItemsSpec {
     /**
      * 商品规格id
      */
-    @Id
+    @TableId
     private String id;
 
     /**
      * 商品外键id
      */
-    @Column(name = "item_id")
+    @TableField(value = "item_id")
     private String itemId;
 
     /**
@@ -36,25 +39,25 @@ public class ItemsSpec {
     /**
      * 优惠价
      */
-    @Column(name = "price_discount")
+    @TableField(value = "price_discount")
     private Integer priceDiscount;
 
     /**
      * 原价
      */
-    @Column(name = "price_normal")
+    @TableField(value = "price_normal")
     private Integer priceNormal;
 
     /**
      * 创建时间
      */
-    @Column(name = "created_time")
+    @TableField(value = "created_time")
     private Date createdTime;
 
     /**
      * 更新时间
      */
-    @Column(name = "updated_time")
+    @TableField(value = "updated_time")
     private Date updatedTime;
 
     /**
