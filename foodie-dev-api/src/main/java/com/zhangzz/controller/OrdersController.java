@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * @author zhangzz
@@ -67,12 +68,19 @@ public class OrdersController extends BaseController {
         return IMOOCJSONResult.ok(merchantOrdersVO.getMerchantOrderId());
     }
 
+    /**
+     * 接收订单支付成功的接口
+     * @param merchantOrderId 订单id
+     * @return 成功状态码
+     */
+    @ApiIgnore
     @PostMapping("/notifyMerchantOrderPaid")
     public Integer notifyMerchantOrderPaid(String merchantOrderId) {
         orderService.updateOrderStatus(merchantOrderId, OrderStatusEnum.WAIT_DELIVER.type);
         return HttpStatus.OK.value();
     }
 
+    @ApiOperation(value = "获取订单的状态信息", notes = "获取订单的状态信息", httpMethod = "POST")
     @PostMapping("getPaidOrderInfo")
     public IMOOCJSONResult getPaidOrderInfo(String orderId) {
         OrderStatus orderStatus = orderService.queryOrderStatusInfo(orderId);
