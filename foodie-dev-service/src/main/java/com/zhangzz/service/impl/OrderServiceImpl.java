@@ -1,5 +1,6 @@
 package com.zhangzz.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zhangzz.enums.OrderStatusEnum;
 import com.zhangzz.enums.YesOrNo;
 import com.zhangzz.mapper.OrderItemsMapper;
@@ -11,6 +12,7 @@ import com.zhangzz.pojo.vo.MerchantOrdersVO;
 import com.zhangzz.service.AddressService;
 import com.zhangzz.service.ItemService;
 import com.zhangzz.service.OrderService;
+import com.zhangzz.utils.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author zhangzz
@@ -138,10 +141,37 @@ public class OrderServiceImpl implements OrderService {
         orderStatusMapper.updateById(paidStatus);
     }
 
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
     @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
     public OrderStatus queryOrderStatusInfo(String orderId) {
         return orderStatusMapper.selectById(orderId);
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    public void closeOrder() {
+        // 查询所有未付款订单，判断时间是否超过一天，超时则关闭交易
+        QueryWrapper<OrderStatus> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(OrderStatus::getOrderStatus, OrderStatusEnum.WAIT_PAY.type);
+        List<OrderStatus> list = orderStatusMapper.selectList(queryWrapper);
+        for (OrderStatus os : list) {
+            // 获得订单创建时间
+            Date createdTime = os.getCreatedTime();
+            // 和当前时间进行对比
+            int days = DateUtil.daysBetween(createdTime, new Date());
+            if (days >= 1) {
+                // 超过一天，关闭订单
+                this.doCloseOrder(os.getOrderId());
+            }
+        }
+    }
+
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    void doCloseOrder(String orderId) {
+        OrderStatus close = new OrderStatus();
+        close.setOrderId(orderId);
+        close.setOrderStatus(OrderStatusEnum.CLOSE.type);
+        close.setCloseTime(new Date());
+        orderStatusMapper.updateById(close);
+    }
 }
