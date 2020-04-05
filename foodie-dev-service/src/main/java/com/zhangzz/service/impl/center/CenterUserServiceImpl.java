@@ -26,6 +26,9 @@ public class CenterUserServiceImpl implements CenterUserService {
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
     public Users queryUserInfo(String userId) {
         Users user = usersMapper.selectById(userId);
+        if (user == null) {
+            return new Users();
+        }
         user.setPassword(null);
         return user;
     }
@@ -35,6 +38,17 @@ public class CenterUserServiceImpl implements CenterUserService {
     public Users updateUserInfo(String userId, CenterUserBO centerUserBO) {
         Users updateUser = new Users();
         BeanUtils.copyProperties(centerUserBO, updateUser);
+        updateUser.setId(userId);
+        updateUser.setUpdatedTime(new Date());
+        usersMapper.updateById(updateUser);
+        return queryUserInfo(userId);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    public Users updateUserFace(String userId, String faceUrl) {
+        Users updateUser = new Users();
+        updateUser.setFace(faceUrl);
         updateUser.setId(userId);
         updateUser.setUpdatedTime(new Date());
         usersMapper.updateById(updateUser);
