@@ -58,14 +58,10 @@ public class ItemsController extends BaseController {
     @ApiOperation(value = "查询商品评论", notes = "查询商品评论", httpMethod = "GET")
     @GetMapping("/comments")
     public IMOOCJSONResult comments(
-            @ApiParam(name = "itemId", value = "商品ID", required = true)
-            @RequestParam String itemId,
-            @ApiParam(name = "level", value = "评价等级", required = false)
-            @RequestParam Integer level,
-            @ApiParam(name = "page", value = "当前页码", required = false)
-            @RequestParam Long page,
-            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false)
-            @RequestParam Long pageSize
+            @ApiParam(name = "itemId", value = "商品ID", required = true) @RequestParam String itemId,
+            @ApiParam(name = "level", value = "评价等级", required = false) @RequestParam Integer level,
+            @ApiParam(name = "page", value = "当前页码", required = false) @RequestParam Long page,
+            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false) @RequestParam Long pageSize
     ) {
         if (StringUtils.isBlank(itemId)) {
             return IMOOCJSONResult.errorMsg(null);
@@ -74,7 +70,7 @@ public class ItemsController extends BaseController {
             page = DEFAULT_PAGE;
         }
         if (pageSize == null) {
-            pageSize = COMMENT_PAGE_SIZE;
+            pageSize = COMMON_PAGE_SIZE;
         }
         return IMOOCJSONResult.ok(itemService.queryPagedComments(itemId, level, page, pageSize));
     }

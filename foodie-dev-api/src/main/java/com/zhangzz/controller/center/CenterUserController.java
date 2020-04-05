@@ -97,8 +97,7 @@ public class CenterUserController extends BaseController {
     @ApiOperation(value = "修改用户信息", notes = "修改用户信息", httpMethod = "POST")
     @PostMapping("/update")
     public IMOOCJSONResult update(
-            @ApiParam(name = "userId", value = "用户id", required = true)
-            @RequestParam String userId,
+            @ApiParam(name = "userId", value = "用户id", required = true) @RequestParam String userId,
             @RequestBody @Valid CenterUserBO centerUserBO,
             BindingResult result) {
         if (result.hasErrors()) {
