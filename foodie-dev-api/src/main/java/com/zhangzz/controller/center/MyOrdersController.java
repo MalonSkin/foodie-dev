@@ -21,9 +21,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/myorders")
 public class MyOrdersController extends BaseController {
 
-    @Autowired
-    private MyOrdersService myOrdersService;
-
     @ApiOperation(value = "查询订单列表", notes = "查询订单列表", httpMethod = "POST")
     @PostMapping("/query")
     public IMOOCJSONResult query(
@@ -86,20 +83,6 @@ public class MyOrdersController extends BaseController {
         boolean result = myOrdersService.deleteOrder(userId, orderId);
         if (!result) {
             return IMOOCJSONResult.errorMsg("订单删除失败！");
-        }
-        return IMOOCJSONResult.ok();
-    }
-
-    /**
-     * 用于验证用户和订单是否有关联关系，避免非法用户调用
-     * @param userId
-     * @param orderId
-     * @return
-     */
-    private IMOOCJSONResult checkUserOrder(String userId, String orderId) {
-        Orders order = myOrdersService.queryMyOrder(userId, orderId);
-        if (order == null) {
-            return IMOOCJSONResult.errorMsg("订单不存在！");
         }
         return IMOOCJSONResult.ok();
     }
