@@ -34,6 +34,8 @@ spring:
     multipart:
       max-file-size: 2MB # 文件上传大小限制为2MB
       max-request-size: 2MB # 请求大小限制为2MB
+  main:
+    banner-mode: log  # 在日志中打印banner
 
 ############################################################
 #
