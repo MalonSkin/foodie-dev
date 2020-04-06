@@ -14,6 +14,7 @@ import com.zhangzz.pojo.OrderStatus;
 import com.zhangzz.pojo.Orders;
 import com.zhangzz.pojo.vo.ItemCommentVO;
 import com.zhangzz.pojo.vo.MyOrdersVO;
+import com.zhangzz.pojo.vo.OrderStatusCountsVO;
 import com.zhangzz.service.center.MyOrdersService;
 import com.zhangzz.utils.PagedGridResult;
 import io.swagger.annotations.Example;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -102,4 +104,34 @@ public class MyOrdersServiceImpl implements MyOrdersService {
         return result == 1;
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
+    public OrderStatusCountsVO getOrderStatusCounts(String userId) {
+        Map<String, Object> map = Maps.newHashMap();
+        map.put("userId", userId);
+        map.put("orderStatus", OrderStatusEnum.WAIT_PAY.type);
+        int waitPayCounts = ordersMapper.getMyOrderStatusCounts(map);
+
+        map.put("orderStatus", OrderStatusEnum.WAIT_DELIVER.type);
+        int waitDeliverCounts = ordersMapper.getMyOrderStatusCounts(map);
+
+        map.put("orderStatus", OrderStatusEnum.WAIT_RECEIVE.type);
+        int waitReceiveCounts = ordersMapper.getMyOrderStatusCounts(map);
+
+        map.put("orderStatus", OrderStatusEnum.SUCCESS.type);
+        map.put("isComment", YesOrNo.NO.type);
+        int waitCommentCounts = ordersMapper.getMyOrderStatusCounts(map);
+
+        return new OrderStatusCountsVO(waitPayCounts, waitDeliverCounts, waitReceiveCounts, waitCommentCounts);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
+    public PagedGridResult getMyOrderTrend(String userId, Long page, Long pageSize) {
+        Map<String, Object> paramsMap = Maps.newHashMap();
+        paramsMap.put("userId", userId);
+        Page<OrderStatus> queryPage = new Page<>(page, pageSize);
+        IPage<OrderStatus> iPage = ordersMapper.getMyOrderTrend(queryPage, paramsMap);
+        return new PagedGridResult().fromPage(iPage);
+    }
 }

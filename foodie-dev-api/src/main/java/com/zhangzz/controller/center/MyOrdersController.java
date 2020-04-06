@@ -21,6 +21,36 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/myorders")
 public class MyOrdersController extends BaseController {
 
+    @ApiOperation(value = "获得订单状态数概况", notes = "获得订单状态数概况", httpMethod = "POST")
+    @PostMapping("/statusCounts")
+    public IMOOCJSONResult statusCounts(
+            @ApiParam(name = "userId", value = "用户ID", required = true) @RequestParam String userId
+    ) {
+        if (StringUtils.isBlank(userId)) {
+            return IMOOCJSONResult.errorMsg(null);
+        }
+        return IMOOCJSONResult.ok(myOrdersService.getOrderStatusCounts(userId));
+    }
+
+    @ApiOperation(value = "查询订单动向", notes = "查询订单动向", httpMethod = "POST")
+    @PostMapping("/trend")
+    public IMOOCJSONResult trend(
+            @ApiParam(name = "userId", value = "用户ID", required = true) @RequestParam String userId,
+            @ApiParam(name = "page", value = "当前页码", required = false) @RequestParam Long page,
+            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false) @RequestParam Long pageSize
+    ) {
+        if (StringUtils.isBlank(userId)) {
+            return IMOOCJSONResult.errorMsg(null);
+        }
+        if (page == null) {
+            page = DEFAULT_PAGE;
+        }
+        if (pageSize == null) {
+            pageSize = COMMON_PAGE_SIZE;
+        }
+        return IMOOCJSONResult.ok(myOrdersService.getMyOrderTrend(userId, page, pageSize));
+    }
+
     @ApiOperation(value = "查询订单列表", notes = "查询订单列表", httpMethod = "POST")
     @PostMapping("/query")
     public IMOOCJSONResult query(
