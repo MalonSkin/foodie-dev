@@ -40,15 +40,13 @@
             ic.content as content,
             ic.created_time as createdTime,
             ic.item_id as itemId,
-            ic.item_name as itemName,applicationTaskExecutor
+            ic.item_name as itemName,
             ic.spec_name as specName,
             ii.url as itemImg
         FROM
             items_comments ic
         LEFT JOIN
-            items_img ii
-        ON
-            ic.item_id = ii.item_id
+            items_img ii ON ic.item_id = ii.item_id
         WHERE
             ic.user_id = #{paramsMap.userId}
         AND
