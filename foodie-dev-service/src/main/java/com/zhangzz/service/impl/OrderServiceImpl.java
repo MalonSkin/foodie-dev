@@ -1,18 +1,22 @@
 package com.zhangzz.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.google.common.collect.Lists;
 import com.zhangzz.enums.OrderStatusEnum;
 import com.zhangzz.enums.YesOrNo;
 import com.zhangzz.mapper.OrderItemsMapper;
 import com.zhangzz.mapper.OrderStatusMapper;
 import com.zhangzz.mapper.OrdersMapper;
 import com.zhangzz.pojo.*;
+import com.zhangzz.pojo.bo.ShopCartBO;
 import com.zhangzz.pojo.bo.SubmitOrderBO;
 import com.zhangzz.pojo.vo.MerchantOrdersVO;
+import com.zhangzz.pojo.vo.OrderVO;
 import com.zhangzz.service.AddressService;
 import com.zhangzz.service.ItemService;
 import com.zhangzz.service.OrderService;
 import com.zhangzz.utils.DateUtil;
+import com.zhangzz.utils.RedisOperator;
 import org.apache.commons.lang3.StringUtils;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +46,12 @@ public class OrderServiceImpl implements OrderService {
     private OrderItemsMapper orderItemsMapper;
     @Autowired
     private OrderStatusMapper orderStatusMapper;
+    @Autowired
+    private RedisOperator redisOperator;
 
     @Override
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public MerchantOrdersVO createOrder(SubmitOrderBO submitOrderBO) {
-
+    public OrderVO createOrder(List<ShopCartBO> shopCartList, SubmitOrderBO submitOrderBO) {
         String userId = submitOrderBO.getUserId();
         String addressId = submitOrderBO.getAddressId();
         Integer payMethod = submitOrderBO.getPayMethod();
@@ -81,9 +86,17 @@ public class OrderServiceImpl implements OrderService {
         Integer totalAmount = 0;
         // 优惠后的实际支付价格累计
         Integer realPayAmount = 0;
+        //
+        List<ShopCartBO> toBeRemovedShopCartList = Lists.newArrayList();
         for (String itemSpecId : itemSpecIdArr) {
-            // TODO 整合Redis后，商品购买的数量重新从Redis的购物车中获取
-            int buyCounts = 1;
+            // 整合Redis后，商品购买的数量重新从Redis的购物车中获取
+            int buyCounts = 0;
+            for (ShopCartBO sc : shopCartList) {
+                if (sc.getSpecId().equals(itemSpecId)) {
+                    buyCounts = sc.getBuyCounts();
+                    toBeRemovedShopCartList.add(sc);
+                }
+            }
             // 2.1 根据规格id查询规格的具体信息，主要获取价格
             ItemsSpec itemSpec = itemService.queryItemSpecById(itemSpecId);
             totalAmount += itemSpec.getPriceNormal() * buyCounts;
@@ -128,7 +141,12 @@ public class OrderServiceImpl implements OrderService {
         merchantOrdersVO.setMerchantUserId(userId);
         merchantOrdersVO.setAmount(realPayAmount + postAmount);
         merchantOrdersVO.setPayMethod(payMethod);
-        return merchantOrdersVO;
+        // 5.构建自定义订单VO
+        OrderVO orderVO = new OrderVO();
+        orderVO.setOrderId(orderId);
+        orderVO.setMerchantOrdersVO(merchantOrdersVO);
+        orderVO.setToBeRemovedShopCartList(toBeRemovedShopCartList);
+        return orderVO;
     }
 
     @Override

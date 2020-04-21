@@ -55,14 +55,6 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- lombok代码简化 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.4</version>
-            <optional>true</optional>
-        </dependency>
-
         <!-- mysql驱动 -->
         <dependency>
             <groupId>mysql</groupId>
@@ -74,6 +66,12 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.3.1.tmp</version>
+        </dependency>
+
+        <!-- 引入redis依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
         <!--Apache工具类-->
@@ -130,5 +128,20 @@
         </dependency>
 
     </dependencies>
+
+    <!-- 配置使用阿里云maven仓库 -->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

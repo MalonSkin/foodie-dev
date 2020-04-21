@@ -1,8 +1,12 @@
 package com.zhangzz.service;
 
 import com.zhangzz.pojo.OrderStatus;
+import com.zhangzz.pojo.bo.ShopCartBO;
 import com.zhangzz.pojo.bo.SubmitOrderBO;
 import com.zhangzz.pojo.vo.MerchantOrdersVO;
+import com.zhangzz.pojo.vo.OrderVO;
+
+import java.util.List;
 
 /**
  * 订单服务层接口
@@ -13,10 +17,11 @@ public interface OrderService {
 
     /**
      * 用于创建订单相关信息
+     * @param shopCartList
      * @param submitOrderBO
      * @return 订单VO
      */
-    public MerchantOrdersVO createOrder(SubmitOrderBO submitOrderBO);
+    public OrderVO createOrder(List<ShopCartBO> shopCartList, SubmitOrderBO submitOrderBO);
 
     /**
      * 修改订单状态

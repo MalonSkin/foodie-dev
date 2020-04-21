@@ -1,14 +1,11 @@
 package com.zhangzz.pojo.vo;
 
-import lombok.Data;
-
 import java.util.Date;
 
 /**
  * @author zhangzz
  * @date 2020/4/6 下午1:17
  */
-@Data
 public class MyCommentVO {
 
     private String commentId;
@@ -19,4 +16,72 @@ public class MyCommentVO {
     private String specName;
     private String itemImg;
 
+    public String getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getSpecName() {
+        return specName;
+    }
+
+    public void setSpecName(String specName) {
+        this.specName = specName;
+    }
+
+    public String getItemImg() {
+        return itemImg;
+    }
+
+    public void setItemImg(String itemImg) {
+        this.itemImg = itemImg;
+    }
+
+    @Override
+    public String toString() {
+        return "MyCommentVO{" +
+                "commentId='" + commentId + '\'' +
+                ", content='" + content + '\'' +
+                ", createdTime=" + createdTime +
+                ", itemId='" + itemId + '\'' +
+                ", itemName='" + itemName + '\'' +
+                ", specName='" + specName + '\'' +
+                ", itemImg='" + itemImg + '\'' +
+                '}';
+    }
 }
