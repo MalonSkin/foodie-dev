@@ -171,8 +171,8 @@ public class PassportController extends BaseController {
     public IMOOCJSONResult logout(@RequestParam String userId) {
         // 清除用户相关的cookie
         CookieUtils.deleteCookie(request, response, "user");
-
-        // TODO 用户退出登录，需要清空购物车
+        // 用户退出登录，需要清空购物车
+        CookieUtils.deleteCookie(request, response, FOODIE_SHOPCART);
         // TODO 分布式会话中需要清除用户数据
 
         return IMOOCJSONResult.ok();
