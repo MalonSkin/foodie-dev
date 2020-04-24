@@ -7,10 +7,15 @@ spring:
     url: jdbc:mysql://122.51.169.209:3306/foodie-shop?useUnicode=true&characterEncoding=UTF-8&autoReconnect
     password: 2010.qq.*
   redis:
+    # redis 集群
+#    cluster:
+#      nodes: 192.168.25.101:6379,192.168.25.102:6379,192.168.25.103:6379,192.168.25.104:6379,192.168.25.105:6379,192.168.25.106:6379
+#    password: root
+    # redis 单机
     database: 1
-    host: 122.51.169.209
+    host: 192.168.25.107
     port: 6379
-    password: 2010.qq.*
+    password: root
 
 #mybatis-plus配置
 mybatis-plus:

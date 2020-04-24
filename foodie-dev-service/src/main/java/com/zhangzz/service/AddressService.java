@@ -46,4 +46,10 @@ public interface AddressService {
      */
     public UserAddress queryUserAddress(String userId, String addressId);
 
+    /**
+     * 更新用户地址为默认地址
+     * @param userId
+     * @param addressId
+     */
+    void updateUserAddressToBeDefault(String userId, String addressId);
 }

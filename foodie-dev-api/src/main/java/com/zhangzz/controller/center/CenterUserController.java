@@ -4,18 +4,17 @@ import com.google.common.collect.Maps;
 import com.zhangzz.controller.BaseController;
 import com.zhangzz.pojo.Users;
 import com.zhangzz.pojo.bo.center.CenterUserBO;
+import com.zhangzz.pojo.vo.UsersVO;
 import com.zhangzz.resource.FileUpload;
 import com.zhangzz.service.center.CenterUserService;
-import com.zhangzz.utils.CookieUtils;
-import com.zhangzz.utils.DateUtil;
-import com.zhangzz.utils.IMOOCJSONResult;
-import com.zhangzz.utils.JsonUtils;
+import com.zhangzz.utils.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -27,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author zhangzz
@@ -41,9 +41,10 @@ public class CenterUserController extends BaseController {
 
     @Autowired
     private FileUpload fileUpload;
-
     @Autowired
     private CenterUserService centerUserService;
+    @Autowired
+    private RedisOperator redisOperator;
 
     @ApiOperation(value = "用户头像修改", notes = "用户头像修改", httpMethod = "POST")
     @PostMapping("/uploadFace")
@@ -73,7 +74,7 @@ public class CenterUserController extends BaseController {
                     outFile.getParentFile().mkdirs();
                 }
                 try {
-                    file.transferTo(outFile);
+                    file.transferTo(outFile.getAbsoluteFile());
                 } catch (IOException e) {
                     LOG.error("用户头像保存失败", e);
                     return IMOOCJSONResult.errorMsg("用户头像保存失败");
@@ -85,13 +86,20 @@ public class CenterUserController extends BaseController {
         // 更新用户头像到数据库,由于浏览器能存在缓存，所以这里需要加上时间戳保证页面的图片能及时更新
         String faceUrl = fileUpload.getImageServerUrl() + "/" + userId + "/" + newFileName + "?t=" + DateUtil.getCurrentDateString(DateUtil.DATE_PATTERN);
         Users userResult = centerUserService.updateUserFace(userId, faceUrl);
-        setNullProperty(userResult);
+        //setNullProperty(userResult);
+        UsersVO usersVO = convertUsersVO(userResult);
         // 设置cookie
-        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(userResult), true);
-
-        // TODO 后续要改，增加令牌token，会整合进Redis，分布式会话
-
+        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(usersVO), true);
         return IMOOCJSONResult.ok();
+    }
+
+    private UsersVO convertUsersVO(Users user) {
+        String uniqueToken = UUID.randomUUID().toString().trim();
+        redisOperator.set(REDIS_USER_TOKEN + ":" + user.getId(), uniqueToken);
+        UsersVO usersVO = new UsersVO();
+        BeanUtils.copyProperties(user, usersVO);
+        usersVO.setUserUniqueToken(uniqueToken);
+        return usersVO;
     }
 
     @ApiOperation(value = "修改用户信息", notes = "修改用户信息", httpMethod = "POST")
@@ -105,12 +113,10 @@ public class CenterUserController extends BaseController {
             return IMOOCJSONResult.errorMap(errorMap);
         }
         Users userResult = centerUserService.updateUserInfo(userId, centerUserBO);
-        setNullProperty(userResult);
+        //setNullProperty(userResult);
+        UsersVO usersVO = convertUsersVO(userResult);
         // 设置cookie
-        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(userResult), true);
-
-        // TODO 后续要改，增加令牌token，会整合进Redis，分布式会话
-
+        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(usersVO), true);
         return IMOOCJSONResult.ok();
     }
 

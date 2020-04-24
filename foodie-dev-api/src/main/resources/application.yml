@@ -31,13 +31,14 @@ spring:
       pool-name: DateSourceHikariCP # 连接池名字
       max-lifetime: 1800000 # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟
       connection-test-query: SELECT 1
-
   servlet:
     multipart:
       max-file-size: 2MB # 文件上传大小限制为2MB
       max-request-size: 2MB # 请求大小限制为2MB
   main:
     banner-mode: log  # 在日志中打印banner
+#  session:
+#    store-type: redis
 
 ############################################################
 #

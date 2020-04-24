@@ -1,6 +1,7 @@
 package com.zhangzz.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zhangzz.enums.YesOrNo;
 import com.zhangzz.mapper.UserAddressMapper;
 import com.zhangzz.pojo.UserAddress;
 import com.zhangzz.pojo.bo.AddressBO;
@@ -81,5 +82,25 @@ public class AddressServiceImpl implements AddressService {
         QueryWrapper<UserAddress> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(UserAddress::getId, addressId).eq(UserAddress::getUserId, userId);
         return userAddressMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    public void updateUserAddressToBeDefault(String userId, String addressId) {
+        // 1.查找默认地址，设置为不默认
+        QueryWrapper<UserAddress> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(UserAddress::getUserId, userId)
+                .eq(UserAddress::getIsDefault, YesOrNo.YES.type);
+        UserAddress ua = userAddressMapper.selectOne(queryWrapper);
+        ua.setIsDefault(YesOrNo.NO.type);
+        userAddressMapper.updateById(ua);
+        // 2.根据地址ID修改默认地址
+        queryWrapper.clear();
+        queryWrapper.lambda()
+                .eq(UserAddress::getId, addressId)
+                .eq(UserAddress::getUserId, userId);
+        UserAddress userAddress = userAddressMapper.selectOne(queryWrapper);
+        userAddress.setIsDefault(YesOrNo.YES.type);
+        userAddressMapper.updateById(userAddress);
     }
 }

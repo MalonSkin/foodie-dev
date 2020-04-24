@@ -9,7 +9,6 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 
 /**
  * @author zhangzz
@@ -35,6 +34,9 @@ public class BaseController {
 
     /** 购物车 cookie */
     public static final String FOODIE_SHOPCART = "shopcart";
+
+    /** 用户token */
+    public static final String REDIS_USER_TOKEN = "redis_user_token";
 
     /** 支付中心的调用地址 */
     public static final String PAYMENT_URL = "http://payment.t.mukewang.com/foodie-payment/payment/createMerchantOrder";
